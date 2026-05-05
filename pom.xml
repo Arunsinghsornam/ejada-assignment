@@ -1,0 +1,154 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<modelVersion>4.0.0</modelVersion>
+<groupId>com.ejada</groupId>
+<artifactId>automation-framework</artifactId>
+<version>1.0.0</version>
+<packaging>jar</packaging>
+<name>Ejada Automation Framework</name>
+<properties>
+<maven.compiler.source>11</maven.compiler.source>
+<maven.compiler.target>11</maven.compiler.target>
+<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+<selenium.version>4.18.1</selenium.version>
+<cucumber.version>7.15.0</cucumber.version>
+<testng.version>7.9.0</testng.version>
+<restassured.version>5.4.0</restassured.version>
+<allure.version>2.25.0</allure.version>
+<webdrivermanager.version>5.7.0</webdrivermanager.version>
+</properties>
+<dependencies>
+<!--  Selenium WebDriver  -->
+<dependency>
+<groupId>org.seleniumhq.selenium</groupId>
+<artifactId>selenium-java</artifactId>
+<version>${selenium.version}</version>
+</dependency>
+<!--  WebDriverManager  -->
+<dependency>
+<groupId>io.github.bonigarcia</groupId>
+<artifactId>webdrivermanager</artifactId>
+<version>${webdrivermanager.version}</version>
+</dependency>
+<!--  Cucumber  -->
+<dependency>
+<groupId>io.cucumber</groupId>
+<artifactId>cucumber-java</artifactId>
+<version>${cucumber.version}</version>
+</dependency>
+<dependency>
+<groupId>io.cucumber</groupId>
+<artifactId>cucumber-testng</artifactId>
+<version>${cucumber.version}</version>
+</dependency>
+<!--  TestNG  -->
+<dependency>
+<groupId>org.testng</groupId>
+<artifactId>testng</artifactId>
+<version>${testng.version}</version>
+</dependency>
+<!--  REST Assured - using 4.5.x to avoid Groovy version conflicts  -->
+<dependency>
+<groupId>io.rest-assured</groupId>
+<artifactId>rest-assured</artifactId>
+<version>4.5.1</version>
+<exclusions>
+<exclusion>
+<groupId>org.codehaus.groovy</groupId>
+<artifactId>groovy</artifactId>
+</exclusion>
+<exclusion>
+<groupId>org.codehaus.groovy</groupId>
+<artifactId>groovy-xml</artifactId>
+</exclusion>
+</exclusions>
+</dependency>
+<dependency>
+<groupId>io.rest-assured</groupId>
+<artifactId>json-path</artifactId>
+<version>4.5.1</version>
+</dependency>
+<!--  Pin Groovy to single version to avoid conflicts  -->
+<dependency>
+<groupId>org.codehaus.groovy</groupId>
+<artifactId>groovy</artifactId>
+<version>3.0.19</version>
+</dependency>
+<dependency>
+<groupId>org.codehaus.groovy</groupId>
+<artifactId>groovy-xml</artifactId>
+<version>3.0.19</version>
+</dependency>
+<!--  Allure Reporting  -->
+<dependency>
+<groupId>io.qameta.allure</groupId>
+<artifactId>allure-cucumber7-jvm</artifactId>
+<version>${allure.version}</version>
+</dependency>
+<dependency>
+<groupId>io.qameta.allure</groupId>
+<artifactId>allure-testng</artifactId>
+<version>${allure.version}</version>
+</dependency>
+<!--  Logging  -->
+<dependency>
+<groupId>org.slf4j</groupId>
+<artifactId>slf4j-simple</artifactId>
+<version>2.0.12</version>
+</dependency>
+<!--  Jackson for JSON  -->
+<dependency>
+<groupId>com.fasterxml.jackson.core</groupId>
+<artifactId>jackson-databind</artifactId>
+<version>2.16.1</version>
+</dependency>
+</dependencies>
+<build>
+<plugins>
+<!--  Maven Surefire Plugin for TestNG  -->
+<plugin>
+<groupId>org.apache.maven.plugins</groupId>
+<artifactId>maven-surefire-plugin</artifactId>
+<version>3.2.5</version>
+<configuration>
+<suiteXmlFiles>
+<suiteXmlFile>testng.xml</suiteXmlFile>
+</suiteXmlFiles>
+<argLine> -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.21/aspectjweaver-1.9.21.jar" </argLine>
+</configuration>
+</plugin>
+<!--  AspectJ for Allure  -->
+<plugin>
+<groupId>org.apache.maven.plugins</groupId>
+<artifactId>maven-dependency-plugin</artifactId>
+<version>3.6.1</version>
+<executions>
+<execution>
+<id>copy</id>
+<phase>initialize</phase>
+<goals>
+<goal>copy</goal>
+</goals>
+<configuration>
+<artifactItems>
+<artifactItem>
+<groupId>org.aspectj</groupId>
+<artifactId>aspectjweaver</artifactId>
+<version>1.9.21</version>
+</artifactItem>
+</artifactItems>
+</configuration>
+</execution>
+</executions>
+</plugin>
+<!--  Allure Maven Plugin  -->
+<plugin>
+<groupId>io.qameta.allure</groupId>
+<artifactId>allure-maven</artifactId>
+<version>2.12.0</version>
+<configuration>
+<reportVersion>${allure.version}</reportVersion>
+</configuration>
+</plugin>
+</plugins>
+</build>
+</project>
