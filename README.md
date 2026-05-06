@@ -1,6 +1,6 @@
-# 🚀 Automation Framework – Ejada Assignment
+#  Automation Framework – Ejada Assignment
 
-## 📌 Overview
+##  Overview
 
 This project is a scalable test automation framework built using:
 
@@ -14,7 +14,7 @@ It covers both **UI automation** and **API testing** with a clean and maintainab
 
 ---
 
-## 🎯 Key Features
+##  Key Features
 
 * ✅ Cross-browser testing (Chrome & Firefox)
 * ✅ Parallel execution using TestNG
@@ -46,7 +46,7 @@ README.md
 
 ---
 
-## ⚙️ Configuration
+##  Configuration
 
 Edit `config.properties`:
 
@@ -59,7 +59,7 @@ api.base.url=https://simple-books-api.glitch.me
 
 ---
 
-## ▶️ How to Run Tests
+##  How to Run Tests
 
 ### Run All Tests:
 
@@ -85,9 +85,9 @@ allure serve target/allure-results
 
 ---
 
-## 🧪 Test Coverage
+##  Test Coverage
 
-### 🔹 UI Automation (SauceDemo)
+###  UI Automation (SauceDemo)
 
 * Login scenarios:
 
@@ -103,7 +103,7 @@ allure serve target/allure-results
 
 ---
 
-### 🔹 API Automation (Simple Books API)
+###  API Automation (Simple Books API)
 
 * GET books
 * GET book by ID
@@ -114,7 +114,7 @@ allure serve target/allure-results
 
 ---
 
-## 🧠 Design Highlights
+##  Design Highlights
 
 * Thread-safe WebDriver using ThreadLocal
 * Reusable WaitHelper for stability
@@ -125,5 +125,5 @@ allure serve target/allure-results
 
 ## 👨‍💻 Author
 
-Karthick Arun
+Arun Singh S
 Senior Automation Tester Assignment Submission
